@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/pkg-info.mk
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_auto_install
+
+	# Install the pom in libservlet3.1-java
+	mh_installpom -plibservlet3.1-java --no-parent --set-version=3.1 pom.xml
+	rm -Rf debian/libservlet3.1-java/usr/share/maven-repo/javax/servlet/javax.servlet-api/debian/
+
+	# Install the old javax.servlet:servlet-api artifacts
+	mh_installpom -plibservlet-api-java --no-parent --set-version=2.5 --rules=debian/maven.rules.compat pom.xml
+	rm -Rf debian/libservlet-api-java/usr/share/maven-repo/javax/servlet/servlet-api/2.5/
+	dh_link -plibservlet-api-java /usr/share/java/servlet-api.jar usr/share/maven-repo/javax/servlet/servlet-api/debian/servlet-api-debian.jar
+
+override_dh_gencontrol:
+	dh_gencontrol
+
+	# Use an epoch for libservlet3.1-java to skip the latest versions from tomcat8
+	dh_gencontrol -plibservlet3.1-java -- -v1:$(DEB_VERSION)

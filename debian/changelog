@@ -1,0 +1,12 @@
+servlet-api (4.0.1-2) unstable; urgency=medium
+
+  * libservlet-api-java-doc now replaces libservlet3.1-java-doc
+  * Standards-Version updated to 4.3.0
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Tue, 15 Jan 2019 00:46:29 +0100
+
+servlet-api (4.0.1-1) unstable; urgency=medium
+
+  * Initial release (Closes: #916354)
+
+ -- Emmanuel Bourg <ebourg@apache.org>  Fri, 14 Dec 2018 10:27:18 +0100

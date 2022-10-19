@@ -1,0 +1,67 @@
+Source: servlet-api
+Section: java
+Priority: optional
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Uploaders: Emmanuel Bourg <ebourg@apache.org>
+Build-Depends:
+ debhelper (>= 11),
+ default-jdk,
+ default-jdk-doc,
+ libmaven-bundle-plugin-java (>= 3.5.1),
+ libmaven-javadoc-plugin-java,
+ maven-debian-helper (>= 2.1)
+Standards-Version: 4.3.0
+Vcs-Git: https://salsa.debian.org/java-team/servlet-api.git
+Vcs-Browser: https://salsa.debian.org/java-team/servlet-api
+Homepage: https://javaee.github.io/servlet-spec/
+
+Package: libservlet-api-java
+Architecture: all
+Depends: ${maven:Depends}, ${misc:Depends}
+Suggests: ${maven:OptionalDepends}
+Breaks: libservlet2.5-java
+Replaces: libservlet2.5-java
+Description: Java Servlet API
+ The Servlet API is the Java platform technology of choice for interacting
+ with the web. Servlets provide a component-based, platform-independent
+ method, for building web-based applications generating dynamic content.
+ Servlets are managed by a container and interact with web clients via a
+ request/response paradigm.
+
+Package: libservlet-api-java-doc
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Recommends: ${maven:DocDepends}, ${maven:DocOptionalDepends}
+Breaks: libservlet3.1-java-doc
+Replaces: libservlet3.1-java-doc
+Provides: libservlet3.1-java-doc
+Description: Java Servlet API (documentation)
+ The Servlet API is the Java platform technology of choice for interacting
+ with the web. Servlets provide a component-based, platform-independent
+ method, for building web-based applications generating dynamic content.
+ Servlets are managed by a container and interact with web clients via a
+ request/response paradigm.
+ .
+ This package contains the API documentation of libservlet-api-java.
+
+Package: libservlet3.1-java
+Architecture: all
+Section: oldlibs
+Depends:
+ ${maven:Depends},
+ ${misc:Depends},
+ libservlet-api-java,
+ libjsp-api-java,
+ libel-api-java,
+ libwebsocket-api-java
+Provides: libservlet3.1-java
+Description: Java Servlet API 3.1 (transitional package)
+ The Servlet API is the Java platform technology of choice for interacting
+ with the web. Servlets provide a component-based, platform-independent
+ method, for building web-based applications generating dynamic content.
+ Servlets are managed by a container and interact with web clients via a
+ request/response paradigm.
+ .
+ This is a transitional package, the other JavaEE packages should be used
+ instead.
